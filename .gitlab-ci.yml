@@ -7,10 +7,10 @@ pages:
   - rm -rf public
   - mkdir public
   - cp -r dist/* public
-	- sed -i 's/<%= BASE_URL %>//' ./public/css/app.fb0c6e1c.css
-	- sed -i 's/<%= BASE_URL %>//' ./public/js/app.3a894c9b.js
-	- sed -i 's/<%= BASE_URL %>//' ./public/js/chunk-vendors.61405a0c.js
-	- sed -i 's/<%= BASE_URL %>//' ./public/js/app.3a894c9b.js
+  - sed -i 's/<%= BASE_URL %>//' ./public/css/app.fb0c6e1c.css
+  - sed -i 's/<%= BASE_URL %>//' ./public/js/app.3a894c9b.js
+  - sed -i 's/<%= BASE_URL %>//' ./public/js/chunk-vendors.61405a0c.js
+  - sed -i 's/<%= BASE_URL %>//' ./public/js/app.3a894c9b.js
  artifacts:
   expire_in: 1 day
   paths:
