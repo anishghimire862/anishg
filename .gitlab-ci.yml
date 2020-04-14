@@ -8,8 +8,8 @@ pages:
   - mkdir public/anishg -p
   - cp -r dist/* public
   - cp -r dist/* public/anishg
-  - sed -i 's/<%= BASE_URL %>//' ./public/css/app.fb0c6e1c.css
-  - sed -i 's/<%= BASE_URL %>//' ./public/js/*.js
+  - sed -i 's/<%= BASE_URL %>//' ./public/anishg/css/app.fb0c6e1c.css
+  - sed -i 's/<%= BASE_URL %>//' ./public/anishg/js/*.js
   - sed -i 's/<%= BASE_URL %>//' ./public/anishg/css/app.fb0c6e1c.css
   - sed -i 's/<%= BASE_URL %>//' ./public/anishg/js/*.js
  artifacts:
