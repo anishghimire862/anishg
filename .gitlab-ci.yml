@@ -14,7 +14,7 @@ pages:
   # - sed -i 's/<%= BASE_URL %>//' ./public/anishg/css/app.fb0c6e1c.css
   # - sed -i 's/<%= BASE_URL %>//' ./public/anishg/css/*.css
   - sed -i 's/<%= BASE_URL %>//' ./public/anishg/js/*.js
-  - sed -i 's/<%= BASE_URL %>//' ./public/anishg/css/app.fb0c6e1c.css
+  - sed -i 's/<%= BASE_URL %>//' ./public/anishg/css/*.css
  artifacts:
   expire_in: 1 day
   paths:
