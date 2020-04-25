@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f0f0f0">
       <a class="navbar-brand" href="#">
         &lt; anish &frasl;&gt;
       </a>
@@ -53,4 +53,7 @@ export default {
   color: green;
   border-bottom: 5px solid black;
 }
+.navbar {
+  border-bottom: 2px solid #e7e7e7;
+} 
 </style>
