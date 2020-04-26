@@ -2,15 +2,7 @@
   <div> 
     <div class="row p-3">
       <div class="col-12 col-md-6">
-        <p> Projects fetched from gitlab account. </p>
-        <!-- <div 
-          class="alert alert-warning alert-dismissible fade show" role="alert"  
-        >
-          <strong>Hey!</strong> Clone Link copied to clipboard.
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div> -->
+        <p> Projects from my gitlab account. </p>
         <div
           v-if="loading"
         >
@@ -51,6 +43,45 @@
               {{ project.description || 'N/A' }}
             </p>
           </div>
+            <button 
+              type="button" 
+              class="btn btn-info m-1 p-1"
+              @click="fetchCommits(project.id), commitsLoading = true"
+            >
+              View Commits
+            </button>
+        </div>
+      </div>
+      <div
+        class="col-12 col-md-6"
+      >
+        <div
+          v-if="commitsLoading"
+        > 
+          Loading commits...
+        </div>
+        <div
+          v-if="showCommits && commits"
+          class="list-group"
+        >
+          <div
+            v-for="commit in commits"
+            :key="commit.id" 
+            class="list-group-item list-group-item-action"
+          >
+            <div class="d-flex w-100 justify-content-between">
+              <small class="text-muted">
+                Committed on:
+                {{ commit.committed_date }}
+              </small>
+            </div>
+            <p class="mb-1">
+              {{ commit.message }}
+            </p>
+            <small class="text-muted">
+              {{ commit.author_name }} - {{ commit.committer_email }}
+            </small>
+          </div>
         </div>
       </div>
     </div>
@@ -62,6 +93,9 @@ export default {
     return {
       projects: [],
       loading: true,
+      commitsLoading: false,
+      commits: [],
+      showCommits: false
     }
   },
   mounted () {
@@ -74,6 +108,15 @@ export default {
         .then((result) => {
           this.projects = result.data
           this.loading = false
+        })
+    },
+    fetchCommits (projectId) {
+      const baseUrl = `https://gitlab.com/api/v4/projects/${projectId}/repository/commits`
+      this.$http.get(baseUrl)
+        .then((result) => {
+          this.commits = result.data
+          this.showCommits = true
+          this.commitsLoading = false
         })
     },
     openRepoInNewTab (url) {
