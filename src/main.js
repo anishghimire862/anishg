@@ -1,12 +1,17 @@
 import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
+import axios from 'axios'
+import VueClipboard from 'vue-clipboard2'
+
 
 import routes from './routes'
 
+Vue.prototype.$http = axios
 Vue.config.productionTip = false
 
 Vue.use(VueRouter)
+Vue.use(VueClipboard)
 
 const router = new VueRouter({mode: 'history', routes})
 

@@ -1,7 +1,91 @@
 <template>
   <div> 
-    <div class="alert alert-primary m-3" role="alert">
-      Coming soon...
+    <div class="row p-3">
+      <div class="col-12 col-md-6">
+        <p> Projects fetched from gitlab account. </p>
+        <!-- <div 
+          class="alert alert-warning alert-dismissible fade show" role="alert"  
+        >
+          <strong>Hey!</strong> Clone Link copied to clipboard.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div> -->
+        <div
+          v-if="loading"
+        >
+          Loading...
+        </div>
+        <div 
+          v-else
+          v-for="project in projects"
+          :key="project.id"
+          class="card bg-light mb-3" 
+          style="max-width: 100%;"
+        >
+          <div 
+            class="card-header p-2"
+          > 
+            <span
+              @click="openRepoInNewTab(project.web_url)"
+              style="color: blue; cursor: pointer;"
+            >
+              {{ project.name || 'N/A' }} 
+            </span>
+            <div
+              class="text-right d-inline float-right"
+            > 
+              <button 
+                type="button" 
+                class="btn btn-info m-0 p-1"
+                v-clipboard:copy="project.http_url_to_repo"
+                v-clipboard:success="onCopy"
+                v-clipboard:error="onError"
+              >
+                Clone
+              </button>
+            </div>
+          </div>
+          <div class="card-body p-2">
+            <p class="card-text">
+              {{ project.description || 'N/A' }}
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
+<script> 
+export default {
+  data () {
+    return {
+      projects: [],
+      loading: true,
+    }
+  },
+  mounted () {
+    this.fetchProjects()
+  },
+  methods: {
+    fetchProjects () {
+      const baseUrl = 'https://gitlab.com/api/v4/users/2229730/projects'
+      this.$http.get(baseUrl)
+        .then((result) => {
+          this.projects = result.data
+          this.loading = false
+        })
+    },
+    openRepoInNewTab (url) {
+      window.open(url, "_blank")
+    },
+    onCopy: function (e) {
+      alert('You just copied: ' + e.text)
+    },
+    onError: function () {
+      alert('Failed to copy texts')
+    }
+
+  }
+}
+</script>
