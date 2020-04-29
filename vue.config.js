@@ -7,6 +7,7 @@ module.exports = {
     : '/'
   ,
   configureWebpack: {
+    headless: false,
     plugins: [
       new HtmlWebpackPlugin({
         template: './public/index.html',
