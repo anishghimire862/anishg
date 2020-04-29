@@ -19,12 +19,3 @@ new Vue({
   router,
   render: h => h(App),
 }).$mount('#app')
-
-// new Vue({
-//   el: '#app',
-//   router,
-//   render: h => h(App),
-//   mounted () {
-//     document.dispatchEvent(new Event('render-event'))
-//   }
-// })
