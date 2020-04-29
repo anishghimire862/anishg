@@ -1,6 +1,6 @@
 var path = require('path')
 var PrerenderSpaPlugin = require('prerender-spa-plugin')
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+// var PuppeteerRenderer = require('puppeter');
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production'
     ? '/anishg/'
@@ -13,6 +13,10 @@ module.exports = {
         staticDir: path.join(__dirname, 'dist'),
         // Required - Routes to render.
         routes: [ '/', '/education', '/projects', '/blog'],
+        renderer: new PrerenderSPAPlugin.PuppeteerRenderer({
+          renderAfterDocumentEvent: 'render-event',
+          headless: false,
+        }),
       })
     ] : []
   }
