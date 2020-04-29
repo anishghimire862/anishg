@@ -8,21 +8,24 @@ module.exports = {
   ,
   configureWebpack: {
     plugins: [
-      new PrerenderSpaPlugin(
-        // Absolute path to compiled SPA
-        path.join(__dirname, '.'),
-        // List of routes to prerender
-        ['/', '/blog', '/education', '/projects']
-      )
+      new PrerenderSpaPlugin({
+        staticDir: path.resolve(__dirname, './dist'),
+        routes: [ '/', '/blog', '/education', '/projects'],
+        postProcess(context) {
+          let titles = {
+            '/': 'My home page',
+            '/blog': 'My awesome about page',
+            '/education': 'Contact me',
+            '/projects': 'Contact me'
+          };
+          context.html = context.html.replace(
+            /<title>[^<]*<\/title>/i,
+            `<title>${titles[context.route]}</title>`
+          )
+          return context
+        }
+      })
     ]
   }
-  // plugins: [
-  //   new PrerenderSpaPlugin(
-  //     // Absolute path to compiled SPA
-  //     path.join(__dirname, '.'),
-  //     // List of routes to prerender
-  //     ['/', '/blog', '/education', '/projects']
-  //   )
-  // ]
 }
 
