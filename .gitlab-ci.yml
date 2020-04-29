@@ -9,6 +9,9 @@ pages:
   - cp -r dist/* public
   - cp -r dist/* public/anishg
   - cp public/index.html public/404.html
+  - mkdir ~/.npm-global
+  - yarn config set prefix '~/.npm-global'
+  - yarn global add @vue/cli-service-global
   - sed -i 's/<%= BASE_URL %>//' ./public/js/*.js
   - sed -i 's/<%= BASE_URL %>//' ./public/anishg/js/*.js
 

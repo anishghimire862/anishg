@@ -1,27 +1,28 @@
-var path = require('path')
-var PrerenderSpaPlugin = require('prerender-spa-plugin')
-// var PuppeteerRenderer = require('puppeter');
+const path = require('path')
+const PrerenderSPAPlugin = require('prerender-spa-plugin')
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production'
     ? '/anishg/'
     : '/'
   ,
-  pluginOptions: {
-    PrerenderSpaPlugin: {
-      registry: undefined,
-      renderRoutes: [
-        '/',
-        '/about'
-      ],
-      useRenderEvent: true,
-      onlyProduction: true,
- 
-      headless: false, // <- this could also be inside the customRendererConfig
-      customRendererConfig:
+  plugins: [
+    new PrerenderSPAPlugin(
+      path.join(__dirname, 'relative/path/to/static/root'),
+      [ '/', '/about', '/education' ],
       {
-        args: ["--auto-open-devtools-for-tabs"]
+        postProcessHtml: function (context) {
+          var titles = {
+            '/': 'Home',
+            '/about': 'Our Story',
+            '/education': 'Contact Us'
+          }
+          return context.html.replace(
+            /<title>[^<]*<\/title>/i,
+            '<title>' + titles[context.route] + '</title>'
+          )
+        }
       }
-    }
-  }
+    )
+  ]
 }
 
