@@ -8,7 +8,7 @@ module.exports = {
   configureWebpack: {
     plugins: [
       new PrerenderSPAPlugin(
-        path.join(__dirname, 'relative/path/to/static/root'),
+        path.join(__dirname, '/dist'),
         [ '/', '/about', '/education' ],
         {
           postProcessHtml: function (context) {
