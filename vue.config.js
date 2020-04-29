@@ -7,7 +7,7 @@ module.exports = {
     : '/'
   ,
   pluginOptions: {
-    prerenderSpa: {
+    PrerenderSpaPlugin: {
       registry: undefined,
       renderRoutes: [
         '/',
