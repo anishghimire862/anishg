@@ -1,6 +1,6 @@
 var path = require('path')
 var PrerenderSpaPlugin = require('prerender-spa-plugin')
-
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production'
     ? '/anishg/'
@@ -8,6 +8,10 @@ module.exports = {
   ,
   configureWebpack: {
     plugins: [
+      new HtmlWebpackPlugin({
+        template: './public/index.html',
+        inject: false
+      }),
       new PrerenderSpaPlugin({
         staticDir: path.resolve(__dirname, './dist'),
         routes: [ '/', '/blog', '/education', '/projects'],

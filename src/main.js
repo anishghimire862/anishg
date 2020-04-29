@@ -15,7 +15,16 @@ Vue.use(VueClipboard)
 
 const router = new VueRouter({mode: 'history', routes})
 
+// new Vue({
+//   router,
+//   render: h => h(App),
+// }).$mount('#app')
+
 new Vue({
+  el: '#app',
   router,
   render: h => h(App),
-}).$mount('#app')
+  mounted () {
+    document.dispatchEvent(new Event('render-event'))
+  }
+})
