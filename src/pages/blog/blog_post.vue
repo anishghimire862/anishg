@@ -2,7 +2,12 @@
   <div>
     <div class="row h-100">
       <div class="col-sm-12 col-md-6 p-0" style="background-color: #fff;">
-        <img src="@/assets/blog-image.png" class="img-fluid" width="100%"/>
+        <img 
+          src="@/assets/anish-ghimire.jpg" 
+          class="img-fluid" 
+          width="100%"
+          alt="Anish Ghimire"
+        />
       </div>
       <div class="col-sm-12 col-md-6 p-0" style="background-color: #fff;">
         <div
