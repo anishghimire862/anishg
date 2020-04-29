@@ -6,13 +6,23 @@ module.exports = {
     ? '/anishg/'
     : '/'
   ,
-  plugins: [
-    new PrerenderSpaPlugin(
-      // Absolute path to compiled SPA
-      path.join(__dirname, '.'),
-      // List of routes to prerender
-      ['/', '/blog', '/education', '/projects']
-    )
-  ]
+  configureWebpack: {
+    plugins: [
+      new PrerenderSpaPlugin(
+        // Absolute path to compiled SPA
+        path.join(__dirname, '.'),
+        // List of routes to prerender
+        ['/', '/blog', '/education', '/projects']
+      )
+    ]
+  }
+  // plugins: [
+  //   new PrerenderSpaPlugin(
+  //     // Absolute path to compiled SPA
+  //     path.join(__dirname, '.'),
+  //     // List of routes to prerender
+  //     ['/', '/blog', '/education', '/projects']
+  //   )
+  // ]
 }
 
