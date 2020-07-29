@@ -14,9 +14,9 @@
         </div>
       </div>
     </div>
-    <div class="alert alert-primary m-3" role="alert">
+    <!-- <div class="alert alert-primary m-3" role="alert">
       Coming soon...
-    </div>
+    </div> -->
   </div>
 </template>
 <script>
